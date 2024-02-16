@@ -1,7 +1,6 @@
 from django.test import TestCase
 
 # Create your tests here.
-import uuid
 from datetime import timedelta, date
 from django.utils import timezone
 from django.conf import settings
@@ -28,7 +27,13 @@ class Healthcare(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+class Primaryskill(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+     
 class Hackathon(models.Model):
     SUPPORTED_AGES = (
         ("<20s", "<20s"),
@@ -83,7 +88,8 @@ class Hackathon(models.Model):
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     number = models.IntegerField(blank=True,default=0, help_text='Phone number')
-    software_stack = models.ManyToManyField(Stack) 
+    software_stack = models.ManyToManyField(Stack)
+    skill = models.ManyToManyField(Primaryskill)  
     healthcare_problem = models.ManyToManyField(Healthcare)   
 
     def __str__(self):
