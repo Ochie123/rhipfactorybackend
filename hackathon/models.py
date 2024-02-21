@@ -35,6 +35,19 @@ class Primaryskill(models.Model):
         return self.name
      
 class Hackathon(models.Model):
+    CITIES_KENYA = (
+        ("Nairobi", "Nairobi"),
+        ("Mombasa", "Mombasa"),
+        ("Kisumu", "Kisumu"),
+        ("Nakuru", "Nakuru"),
+        ("Eldoret", "Eldoret"),
+        ("Thika", "Thika"),
+        ("Malindi", "Malindi"),
+        ("Kitale", "Kitale"),
+        ("Garissa", "Garissa"),
+        ("Kakamega", "Kakamega"),
+        ("Kiambu", "Kiambu")
+    )
     SUPPORTED_AGES = (
         ("<20s", "<20s"),
         ("20s", "20s"),
@@ -74,7 +87,7 @@ class Hackathon(models.Model):
         ("website", "Website"),
         ("other", "Other"),
     )
-
+    cities_kenya = models.CharField(max_length=255, choices=CITIES_KENYA)
     supported_ages = models.CharField(max_length=255, choices=SUPPORTED_AGES)
     supported_years = models.CharField(max_length=255, choices=SUPPORTED_YEARS)
     sex_choices = models.CharField(max_length=255, choices=SEX_CHOICES)
@@ -83,11 +96,11 @@ class Hackathon(models.Model):
     hear_us = models.CharField(max_length=255, choices=HEAR_US)
 
     linkedin = models.CharField(max_length=5000)
-    overview = models.CharField(max_length=5000)
-    other_problems = models.CharField(max_length=5000, blank=True)
+    overview = RichTextUploadingField(max_length=5000)
+    other_problems = RichTextUploadingField(("description"), blank=True)
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
-    number = models.IntegerField(blank=True,default=0, help_text='Phone number')
+    number = models.IntegerField(blank=True)
     software_stack = models.ManyToManyField(Stack)
     skill = models.ManyToManyField(Primaryskill)  
     healthcare_problem = models.ManyToManyField(Healthcare)   

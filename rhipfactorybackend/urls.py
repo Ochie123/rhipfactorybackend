@@ -17,13 +17,14 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
-from django.urls import include, path
+from django.urls import include, path, re_path
 from hackathon import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin-secret/', admin.site.urls),
     path('api/', include('hackathon.api.urls', namespace='api')), 
     path("hackathon/", include("hackathon.urls") ),
+    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

@@ -54,7 +54,7 @@ class HackathonAdmin(OrderedInlineModelAdminMixin, admin.ModelAdmin):
 
     #actions = [export_xlsx]
 
-    fieldsets = ((_("Product"), {"fields": ("name","email","linkedin","number","sex_choices", "supported_ages","supported_years","skill","software_stack","healthcare_problem","other_problems","participation", 'experience', 'hear_us', )}),)
+    fieldsets = ((_("Product"), {"fields": ("name","email","linkedin","number","overview","sex_choices", "supported_ages","supported_years","skill","software_stack","healthcare_problem","other_problems","participation", 'experience', 'hear_us', )}),)
   #  prepopulated_fields = {"slug": ("name",)}
    # inlines = [ProductImageInline]
 
